@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Developer by Md Tarek</title>
+    <title>Earning ads Bot</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
@@ -136,9 +136,9 @@
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Welcome to <span id="botName">EarnBot</span></h1>
-            <p>Developed by Md Tarek Islam</p>
+        <h1>Dear User, Welcome To Auto MoneTag Ads</h1>
+        <div class="developer" onclick="window.location.href='Payment Proof Channel. Any Problem To Contact Admin'@fahim0007fi">
+        </div>
         </header>
         <!-- Home Page -->
         <section id="home" class="page">
@@ -159,8 +159,8 @@
         <!-- Earn Page -->
         <section id="earn" class="page hidden">
             <h2>Earn</h2>
-            <button class="option-btn" onclick="window.open('https://youtube.com/@itb-24s?si=NvBiNlt46mV6teHC', '_blank')">📺 Subscribe to YouTube Channel</button>
-            <button class="option-btn" onclick="window.open('https://t.me/freeincomTipsBangla', '_blank')">💬 Join Telegram Channel</button>
+            <button class="option-btn" onclick="window.open('https://www.youtube.com/@Monetagadmin')">📺 Subscribe to YouTube Channel</button>
+            <button class="option-btn" onclick="window.open('https://t.me/StarsSellerCommunity.')">💬 Join Telegram Channel</button>
             <button class="option-btn" onclick="showPage('withdraw')">💳 Withdraw</button>
         </section>
         <!-- Withdraw Page -->
@@ -185,12 +185,12 @@
             <div class="profile-picture-container">
                 <img id="profilePicture" src="https://via.placeholder.com/100" alt="Profile Picture" class="profile-picture">
                 <div class="profile-upload">
-                    <input type="file" id="uploadProfile" accept="image/*" onchange="uploadProfilePicture(event)">
+                    <input type="file" id="uploadProfile" accept="image/*" onchange="uploadProfilePicture(event)" <?php echo isset($_SESSION['profilePicture']) ? 'disabled' : ''; ?>>
                     <label for="uploadProfile">Upload Picture</label>
                 </div>
             </div>
             <label>Username</label>
-            <input type="text" id="usernameInput" placeholder="Enter your username">
+            <input type="text" id="usernameInput" placeholder="Enter your username" <?php echo isset($_SESSION['username']) ? 'disabled' : ''; ?>>
             <button class="earn-btn" onclick="saveUsername()">💾 Save Username</button>
             <p>Name: <strong id="userName">Guest</strong></p>
             <p>Balance: <strong id="balance">$0</strong></p>
@@ -199,8 +199,10 @@
             <p>Daily Ads: <strong id="dailyAds">0/50</strong></p>
             <p>Referral Count: <strong id="referralCount">0</strong></p>
             <button class="earn-btn" onclick="copyReferralLink()">📋 Copy Link</button>
+                  <button class="option-btn" onclick="window.location.href='https://t.me/fahim0007fi'">Contact Admin</button>
+    
             <button class="option-btn" onclick="shareReferral()">📢 Share</button>
-        </section>
+          </section>
         <nav class="bottom-nav">
             <button onclick="showPage('home')">🏠 Home</button>
             <button onclick="showPage('earn')">💰 Earn</button>
@@ -228,6 +230,14 @@
             document.getElementById("boxProgress").value = adsWatched;
             document.getElementById("profilePicture").src = profilePicture;
             document.getElementById("userName").innerText = username;
+
+            // Disable username and profile picture inputs if already set
+            if (localStorage.getItem("username")) {
+                document.getElementById("usernameInput").disabled = true;
+            }
+            if (localStorage.getItem("profilePicture")) {
+                document.getElementById("uploadProfile").disabled = true;
+            }
         });
 
         // Save Username
@@ -240,6 +250,7 @@
             username = usernameInput;
             localStorage.setItem("username", username);
             document.getElementById("userName").innerText = username;
+            document.getElementById("usernameInput").disabled = true;
             alert("Username saved successfully!");
         }
 
@@ -265,11 +276,6 @@
             }
 
             adWindow = window.open('https://www.effectiveratecpm.com/stx0112wf?key=28ded444cff716a44e43d7a635df079c', '_blank');
-
-            if (!adWindow || adWindow.closed) {
-                alert("❌ Please allow pop-ups to watch ads!");
-                return;
-            }
 
             setTimeout(() => {
                 if (adWindow && !adWindow.closed) {
@@ -338,9 +344,9 @@
             updateBoxProgress();
         }
 
-        // Direct Ads function (not implemented)
+        // Direct Ads function
         function directAds() {
-            alert("Direct Ads functionality is not implemented yet.");
+            window.open('https://roubauteezavoak.net/4/8925659', '_blank');
         }
 
         // Submit withdrawal request
@@ -384,6 +390,7 @@
                 reader.onload = function (e) {
                     document.getElementById("profilePicture").src = e.target.result;
                     localStorage.setItem("profilePicture", e.target.result);
+                    document.getElementById("uploadProfile").disabled = true;
                 };
                 reader.readAsDataURL(file);
             }
@@ -391,7 +398,7 @@
 
         // Copy referral link
         function copyReferralLink() {
-            const referralLink = "https://t.me/@Monetagddbot";
+            const referralLink = "https://t.me/Monetagddbot";
             navigator.clipboard.writeText(referralLink).then(() => {
                 alert(`${username}, your referral link copied to clipboard!`);
             });
@@ -399,7 +406,7 @@
 
         // Share referral link
         function shareReferral() {
-            const referralLink = "https://t.me/ Monetagddbot";
+            const referralLink = "https://t.me/Monetagddbot";
             if (navigator.share) {
                 navigator.share({
                     title: 'Referral Link',
@@ -413,6 +420,16 @@
                 copyReferralLink();
             }
         }
+
+        // Check if the date has changed to reset daily ads
+        function checkDateReset() {
+            const lastAdDate = localStorage.getItem("lastAdDate");
+            const today = new Date().toDateString();
+            if (lastAdDate !== today) {
+                localStorage.setItem("adsToday", 0);
+                localStorage.setItem("lastAdDate", today);
+            }
+        }
     </script>
 </body>
-</html>
+                </html>
